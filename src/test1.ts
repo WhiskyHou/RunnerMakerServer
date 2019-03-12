@@ -10,7 +10,7 @@ http
 
     // 发送响应数据 "Hello World"
     if (request.url === "/python") {
-        setMap()
+      setMap()
     } else {
       response.end("hello others");
     }

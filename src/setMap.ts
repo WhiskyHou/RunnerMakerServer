@@ -1,4 +1,4 @@
-export default function setMap(){
+export default function setMap() {
     return new Promise((resolve, reject) => {
         setTimeout(() => {
             resolve()
