@@ -1,0 +1,199 @@
+{
+  "maps": [
+    {
+      "id": 0,
+      "nickName": "测试地图 本地文件",
+      "countDown": 120,
+      "width": 16,
+      "height": 9,
+      "startPos": {
+        "x": 0,
+        "y": 1
+      },
+      "endPos": {
+        "x": 8,
+        "y": 1
+      },
+      "nodeInfo": [
+        {
+          "pos": {
+            "x": 0,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 1,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 2,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 3,
+            "y": 0
+          },
+          "prefabType": "Ice"
+        },
+        {
+          "pos": {
+            "x": 4,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 5,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 6,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": -2,
+            "y": 2
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": -1,
+            "y": 2
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 0,
+            "y": 2
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 5,
+            "y": 3
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 6,
+            "y": 3
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 7,
+            "y": 3
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 8,
+            "y": 3
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 2,
+            "y": 6
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 1,
+            "y": 6
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 0,
+            "y": 6
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": -1,
+            "y": 6
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 7,
+            "y": 4
+          },
+          "prefabType": "Spring"
+        },
+        {
+          "pos": {
+            "x": -1,
+            "y": 3
+          },
+          "prefabType": "Cannon"
+        }
+      ]
+    },
+    {
+      "id": 0,
+      "nickName": "测试地图2",
+      "countDown": 90,
+      "width": 20,
+      "height": 100,
+      "startPos": {
+        "x": 4,
+        "y": 1
+      },
+      "endPos": {
+        "x": 11,
+        "y": 80
+      },
+      "nodeInfo": [
+        {
+          "pos": {
+            "x": 0,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 1,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        },
+        {
+          "pos": {
+            "x": 2,
+            "y": 0
+          },
+          "prefabType": "Stone"
+        }
+      ]
+    }
+  ]
+}
