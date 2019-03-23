@@ -13,7 +13,7 @@ http
     if (request.url === "/python") {
       setMap();
     } else if (request.url === '/getMaps'){
-      getMaps().then((e) => {response.end(e)})
+      getMaps().then((e) => {response.end(e)}).catch(console.log)
     } else {
       response.end("api name error");
     }
