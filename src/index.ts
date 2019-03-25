@@ -1,9 +1,19 @@
 import * as http from "http";
 import setMap from "./setMap";
 import getMaps from "./getMaps";
+import querystring from 'querystring'
 
 http
   .createServer((request, response) => {
+    let body = "";
+    request.on("data", (chunk: any) => {
+      body += chunk;
+      // console.log("chunk: ", chunk);
+      // console.log("body: ", body)
+      let res = querystring.parse(body)
+      console.log(JSON.parse(res.data.toString()))
+    });
+
     // 发送 HTTP 头部
     // HTTP 状态值: 200 : OK
     // 内容类型: text/plain
@@ -12,8 +22,18 @@ http
     // 发送响应数据 "Hello World"
     if (request.url === "/python") {
       setMap();
-    } else if (request.url === '/getMaps'){
-      getMaps().then((e) => {response.end(e)}).catch(console.log)
+    } else if (request.url === "/getMaps") {
+      getMaps()
+        .then(e => {
+          response.end(e);
+        })
+        .catch(console.log);
+    } else if (request.url === "/setMap") {
+      setMap()
+        .then(e => {
+          response.end(e);
+        })
+        .catch(console.log);
     } else {
       response.end("api name error");
     }
