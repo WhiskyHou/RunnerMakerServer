@@ -1,4 +1,5 @@
 import * as http from "http";
+import * as fs from 'fs'
 import setMap from "./setMap";
 import getMaps from "./getMaps";
 import querystring from 'querystring'
@@ -10,8 +11,14 @@ http
       body += chunk;
       // console.log("chunk: ", chunk);
       // console.log("body: ", body)
+
+      // python post json
       let res = querystring.parse(body)
       console.log(JSON.parse(res.data.toString()))
+
+      // C# post json
+      console.log(JSON.parse(body))
+      // fs.writeFileSync("out.json", body, { encoding: "utf-8" })
     });
 
     // 发送 HTTP 头部
