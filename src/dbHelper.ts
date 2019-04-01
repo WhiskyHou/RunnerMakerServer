@@ -11,7 +11,7 @@ class DataBaseHelper {
 
   public createUser(username: string, password: string) {
     const emptyMaps = { maps: [] }
-    const sql = `INSERT INTO user (username, password, maps) VALUES ('${username}', '${password}', '${JSON.stringify(emptyMaps)}')`
+    const sql = `INSERT INTO user (username, password) VALUES ('${username}', '${password}')`
 
     return new Promise((resolve, rejects) => {
       this.connection!.query(sql, (error, result) => {
@@ -27,10 +27,9 @@ class DataBaseHelper {
   }
 
   public searchUser(username: string) {
-    const user = { id: -1, username: '', maps: '' }
+    const user = { id: -1, username: '', password: '' }
 
     const sql = `SELECT * FROM user WHERE username='${username}'`
-
 
     return new Promise((resolve, rejects) => {
       this.connection!.query(sql, (error, result) => {
@@ -41,13 +40,12 @@ class DataBaseHelper {
           if (result.length === 1) {
             user.id = result[0].id
             user.username = result[0].username
-            user.maps = result[0].maps
+            user.password = result[0].password
           }
           resolve(user)
         }
       })
     })
-
   }
 
   private connect() {
@@ -66,7 +64,7 @@ class DataBaseHelper {
     }
   }
 
-  private close() {
+  private disconnect() {
     if (this.connection) {
       this.connection.end()
     }
