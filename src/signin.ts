@@ -1,0 +1,18 @@
+import dbHelper from './dbHelper'
+
+export default function signIn(username: string, passowrd: string) {
+  return new Promise((resolve, rejects) => {
+    const userPromise = dbHelper.searchUser(username)
+    userPromise.then((user: any) => {
+      if (user.id !== -1) {
+        if (passowrd === user.password) {
+          resolve("sgin in success")
+        } else {
+          resolve("password error")
+        }
+      } else {
+        resolve("user has not been sign up")
+      }
+    })
+  })
+}

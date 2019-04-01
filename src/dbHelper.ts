@@ -27,7 +27,7 @@ class DataBaseHelper {
   }
 
   public searchUser(username: string) {
-    const user = { id: -1, username: '', password: '' }
+    const user = { uid: -1, username: '', password: '' }
 
     const sql = `SELECT * FROM user WHERE username='${username}'`
 
@@ -38,7 +38,7 @@ class DataBaseHelper {
         } else {
           console.log("Search user success")
           if (result.length === 1) {
-            user.id = result[0].id
+            user.uid = result[0].uid
             user.username = result[0].username
             user.password = result[0].password
           }

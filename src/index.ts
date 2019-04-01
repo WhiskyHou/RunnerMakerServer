@@ -2,6 +2,7 @@ import * as http from "http"
 import * as fs from 'fs'
 import setMap from "./setMap"
 import getMaps from "./getMaps"
+import signIn from "./signin"
 import signUp from "./signup"
 import querystring from 'querystring'
 
@@ -27,7 +28,13 @@ http
       // 根据请求接口做出响应
       if (request.url === "/python") {
         setMap();
-      } else if (request.url === '/') {
+      } else if (request.url === "/signin") {
+        const obj = JSON.parse(body)
+        signIn(obj.username, obj.password)
+          .then(e => {
+            response.end(e)
+          })
+      } else if (request.url === '/signup') {
         const obj = JSON.parse(body)
         signUp(obj.username, obj.password)
           .then(e => {
