@@ -1,51 +1,55 @@
-import * as http from "http";
+import * as http from "http"
 import * as fs from 'fs'
-import setMap from "./setMap";
-import getMaps from "./getMaps";
+import setMap from "./setMap"
+import getMaps from "./getMaps"
+import signUp from "./signup"
 import querystring from 'querystring'
 
 http
   .createServer((request, response) => {
+
+    // 发送 HTTP 头部
+    response.writeHead(200, { "Content-Type": "text/plain;charset=utf-8" });
+
+    // 解析出请求的数据
     let body = "";
     request.on("data", (chunk: any) => {
       body += chunk;
-      // console.log("chunk: ", chunk);
-      // console.log("body: ", body)
 
       // python post json
-      let res = querystring.parse(body)
-      console.log(JSON.parse(res.data.toString()))
+      // let res = querystring.parse(body)
+      // console.log(JSON.parse(res.data.toString()))
 
       // C# post json
-      console.log(JSON.parse(body))
-      // fs.writeFileSync("out.json", body, { encoding: "utf-8" })
+      const data = JSON.parse(body)
+      console.log(data)
+
+      // 根据请求接口做出响应
+      if (request.url === "/python") {
+        setMap();
+      } else if (request.url === '/') {
+        const obj = JSON.parse(body)
+        signUp(obj.username, obj.password)
+          .then(e => {
+            response.end(e)
+          }).catch(console.log)
+      } else if (request.url === "/getMaps") {
+        getMaps()
+          .then(e => {
+            response.end(e);
+          })
+          .catch(console.log);
+      } else if (request.url === "/setMap") {
+        setMap()
+          .then(e => {
+            response.end(e);
+          })
+          .catch(console.log);
+      } else {
+        response.end("api name error");
+      }
     });
 
-    // 发送 HTTP 头部
-    // HTTP 状态值: 200 : OK
-    // 内容类型: text/plain
-    response.writeHead(200, { "Content-Type": "text/plain;charset=utf-8" });
-
-    // 发送响应数据 "Hello World"
-    if (request.url === "/python") {
-      setMap();
-    } else if (request.url === "/getMaps") {
-      getMaps()
-        .then(e => {
-          response.end(e);
-        })
-        .catch(console.log);
-    } else if (request.url === "/setMap") {
-      setMap()
-        .then(e => {
-          response.end(e);
-        })
-        .catch(console.log);
-    } else {
-      response.end("api name error");
-    }
-
-    console.log(request.url);
   })
   .listen(8686);
 
