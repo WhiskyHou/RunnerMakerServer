@@ -4,7 +4,7 @@ export default function signIn(username: string, passowrd: string) {
   return new Promise((resolve, rejects) => {
     const userPromise = dbHelper.searchUser(username)
     userPromise.then((user: any) => {
-      if (user.id !== -1) {
+      if (user.uid !== -1) {
         if (passowrd === user.password) {
           resolve("sgin in success")
         } else {
