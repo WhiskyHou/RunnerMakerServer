@@ -11,6 +11,15 @@
 * npm run dev
 
 ## 接口列表
-* login
-* uploadMap
-* getMaps
+* signin - 登录
+    * 参数 - username, password
+    * 返回 - status
+* signup - 注册
+    * 参数 - username, password, nickname
+    * 返回 - status
+* uploadMap - 上传地图
+    * 参数 - map
+    * 返回 - status
+* getMaps - 获取所有地图
+    * 参数 - username
+    * 返回 - maps

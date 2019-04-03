@@ -35,7 +35,7 @@ class DataBaseHelper {
   }
 
   public searchUser(username: string) {
-    const user = { uid: -1, username: '', password: '', nickname: '' }
+    const user: User = { uid: -1, username: '', password: '', nickname: '' }
 
     const sql = `SELECT * FROM user WHERE username='${username}'`
 
