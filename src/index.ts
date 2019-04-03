@@ -1,6 +1,6 @@
 import * as http from "http"
 import * as fs from 'fs'
-import setMap from "./setMap"
+import uploadMap from "./uploadMap"
 import getMaps from "./getMaps"
 import signIn from "./signin"
 import signUp from "./signup"
@@ -25,11 +25,7 @@ http.createServer((request, response) => {
     console.log("POST data: ", data)
 
     // 根据请求接口做出响应
-    if (request.url === "/python") {
-
-      setMap();
-
-    } else if (request.url === "/signin") {
+    if (request.url === "/signin") {
 
       const obj = JSON.parse(body)
       signIn(obj.username, obj.password).then(e => { response.end(e) }).catch(console.log)
@@ -43,9 +39,10 @@ http.createServer((request, response) => {
 
       getMaps().then(e => { response.end(e) }).catch(console.log)
 
-    } else if (request.url === "/setMap") {
+    } else if (request.url === "/uploadMap") {
 
-      setMap().then(e => { response.end(e) }).catch(console.log)
+      const obj = JSON.parse(body)
+      uploadMap(obj).then(e => { response.end(e) }).catch(console.log)
 
     } else {
 

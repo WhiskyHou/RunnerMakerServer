@@ -59,6 +59,45 @@ class DataBaseHelper {
       })
     })
   }
+
+  public createMap(data: any) {
+
+    const sql = `INSERT INTO map (nickname, ) VALUES ()`
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("create map fail: ", error)
+          } else {
+
+          }
+        })
+      })
+    })
+  }
+
+  public searchAllMapsInfo() {
+    const maps: { maps: any[] } = { maps: [] }
+
+    const sql = `SELECT * FROM map`
+
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("search maps fail: ", error)
+          } else {
+            result.forEach((item: any) => {
+              const map = { mid: item.mid, uid: item.uid, nickname: item.nickname }
+              maps.maps.push(map)
+            });
+            connection.release()
+            resolve(maps)
+          }
+        })
+      })
+    })
+  }
 }
 
 const dbHelper = new DataBaseHelper()
