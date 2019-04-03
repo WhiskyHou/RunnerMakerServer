@@ -7,12 +7,15 @@ export default function signIn(username: string, passowrd: string) {
       const user = e as User
       if (user.uid !== -1) {
         if (passowrd === user.password) {
-          resolve("sgin in success")
+          const result: SignInResult = { error: 0, data: user }
+          resolve(JSON.stringify(result))
         } else {
-          resolve("password error")
+          const result: SignInResult = { error: 1, data: user }
+          resolve(JSON.stringify(result))
         }
       } else {
-        resolve("user has not been sign up")
+        const result: SignInResult = { error: 2, data: user }
+        resolve(JSON.stringify(result))
       }
     })
   })

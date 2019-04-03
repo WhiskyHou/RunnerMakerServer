@@ -5,7 +5,8 @@ export default function signUp(username: string, password: string, nickname: str
     let userPromise = dbHelper.searchUser(username)
     userPromise.then((user: any) => {
       if (user.uid !== -1) {
-        resolve("username has been used")
+        const result: SignUpResult = { error: 1 }
+        resolve(JSON.stringify(result))
       } else {
         addUser(username, password, nickname).then(resolve)
       }
@@ -18,9 +19,11 @@ function addUser(username: string, password: string, nickname: string) {
     dbHelper.createUser(username, password, nickname)
       .then(e => {
         if (e === "fail") {
-          resolve("sign up failed")
+          const result: SignUpResult = { error: 2 }
+          resolve(JSON.stringify(result))
         } else {
-          resolve("sign up success")
+          const result: SignUpResult = { error: 0 }
+          resolve(JSON.stringify(result))
         }
       })
   })
