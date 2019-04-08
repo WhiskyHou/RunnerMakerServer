@@ -98,6 +98,15 @@ class DataBaseHelper {
       })
     })
   }
+
+  public searchMapById(id: number) {
+
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+
+      })
+    })
+  }
 }
 
 const dbHelper = new DataBaseHelper()
