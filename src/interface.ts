@@ -15,8 +15,13 @@ interface SignUpResult {
   error: number
 }
 
+interface UploadMapResult {
+  error: number
+}
+
 interface MapData {
-  id: number
+  mid: number
+  uid: number
   nickname: string
   creatername: string
   width: number

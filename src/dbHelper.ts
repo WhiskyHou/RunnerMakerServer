@@ -62,14 +62,36 @@ class DataBaseHelper {
 
   public createMap(data: any) {
 
-    const sql = `INSERT INTO map (nickname, ) VALUES ()`
+    const sql = `INSERT INTO map (uid,
+                                  nickname, 
+                                  count_down, 
+                                  width, 
+                                  height,
+                                  start_x,
+                                  start_y,
+                                  end_x,
+                                  end_y,
+                                  nodes_data ) VALUES (${data.uid},
+                                                       '${data.nickname}',
+                                                       ${data.countDown},
+                                                       ${data.width},
+                                                       ${data.height},
+                                                       ${data.startX},
+                                                       ${data.startY},
+                                                       ${data.endX},
+                                                       ${data.endY},
+                                                       '${data.nodeInfo}' )`
     return new Promise((resolve, rejects) => {
       this.pool.getConnection((err, connection) => {
         connection.query(sql, (error, result) => {
           if (error) {
             console.log("create map fail: ", error)
+            connection.release()
+            resolve("fail")
           } else {
-
+            console.log("Create map success")
+            connection.release()
+            resolve("success")
           }
         })
       })
