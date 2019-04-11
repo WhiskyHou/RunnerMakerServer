@@ -19,6 +19,11 @@ interface UploadMapResult {
   error: number
 }
 
+interface GetMapsResult {
+  error: number
+  maps: { mid: number, uid: number, nickname: string }[]
+}
+
 interface MapData {
   mid: number
   uid: number

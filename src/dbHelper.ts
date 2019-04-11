@@ -99,7 +99,7 @@ class DataBaseHelper {
   }
 
   public searchAllMapsInfo() {
-    const maps: { maps: any[] } = { maps: [] }
+    const maps: any[] = []
 
     const sql = `SELECT * FROM map`
 
@@ -108,10 +108,11 @@ class DataBaseHelper {
         connection.query(sql, (error, result) => {
           if (error) {
             console.log("search maps fail: ", error)
+            resolve("fail")
           } else {
             result.forEach((item: any) => {
               const map = { mid: item.mid, uid: item.uid, nickname: item.nickname }
-              maps.maps.push(map)
+              maps.push(map)
             });
             connection.release()
             resolve(maps)
