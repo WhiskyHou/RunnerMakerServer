@@ -27,8 +27,8 @@ interface GetMapsResult {
 interface MapData {
   mid: number
   uid: number
-  nickname: string
-  creatername: string
+  nickName: string
+  createrName: string
   width: number
   height: number
   countDown: number

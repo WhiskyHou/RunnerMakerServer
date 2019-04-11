@@ -124,9 +124,35 @@ class DataBaseHelper {
 
   public searchMapById(id: number) {
 
+    const sql = `SELECT * FROM map WHERE mid=${id}`
     return new Promise((resolve, rejects) => {
       this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("search map by id fail: ", error)
+          } else {
+            console.log("search map by id success")
+            const map = {
+              mid: result[0].mid,
+              uid: result[0].uid,
+              createrName: "",
+              nickName: result[0].nickname,
+              countDown: result[0].count_down,
+              width: result[0].width,
+              height: result[0].height,
+              goodCount: result[0].good_count,
+              diffCount: result[0].diff_count,
+              passCount: result[0].pass_count,
+              trysCount: result[0].trys_count,
+              startPos: { x: result[0].start_x, y: result[0].start_y },
+              endPos: { x: result[0].end_x, y: result[0].end_y },
+              nodeInfo: JSON.parse(result[0].nodes_data),
+            }
 
+            connection.release()
+            resolve(map)
+          }
+        })
       })
     })
   }

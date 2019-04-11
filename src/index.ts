@@ -5,6 +5,7 @@ import getMaps from "./getMaps"
 import signIn from "./signin"
 import signUp from "./signup"
 import querystring from 'querystring'
+import getMapById from "./getMapById"
 
 http.createServer((request, response) => {
 
@@ -38,6 +39,11 @@ http.createServer((request, response) => {
     } else if (request.url === "/getMaps") {
 
       getMaps().then(e => { response.end(e) }).catch(console.log)
+
+    } else if (request.url === "/getMapById") {
+
+      const obj = JSON.parse(body)
+      getMapById(obj.mid).then(e => { response.end(e) }).catch(console.log)
 
     } else if (request.url === "/uploadMap") {
 
