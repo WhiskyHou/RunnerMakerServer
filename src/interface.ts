@@ -24,6 +24,11 @@ interface GetMapsResult {
   maps: { mid: number, uid: number, nickname: string }[]
 }
 
+interface GetMyMapsInfo {
+  error: number
+  maps: { nickname: string, goodCount: number, diffCount: number, passCount: number, trysCount: number }[]
+}
+
 interface MapData {
   mid: number
   uid: number

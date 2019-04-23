@@ -156,6 +156,36 @@ class DataBaseHelper {
       })
     })
   }
+
+  public searchMapsByUid(uid: number) {
+    const sql = `SELECT * FROM map WHERE uid=${uid}`
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("search map by id fail: ", error)
+          } else {
+            console.log("search map by id success")
+
+            const maps: any = []
+            result.forEach((item: any) => {
+              const map = {
+                nickname: item.nickname,
+                goodCount: item.good_count,
+                diffCount: item.diff_count,
+                passCount: item.pass_count,
+                trysCount: item.trys_count
+              }
+              maps.push(map)
+            });
+
+            connection.release()
+            resolve(maps)
+          }
+        })
+      })
+    })
+  }
 }
 
 const dbHelper = new DataBaseHelper()
