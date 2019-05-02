@@ -194,21 +194,22 @@ class DataBaseHelper {
     })
   }
 
-  public checkHasGood(uid: number, mid: number) {
-    const sql = `SELECT * FROM good WHERE uid=${uid} AND mid=${mid}`
+  public checkMapInfoWithUser(type: string, uid: number, mid: number) {
+    const sql = `SELECT * FROM ${type} WHERE uid=${uid} AND mid=${mid}`
     return new Promise((resolve, rejects) => {
       this.pool.getConnection((err, connection) => {
         connection.query(sql, (error, result) => {
           if (error) {
-            console.log("check has good this map failed: ", error)
+            console.log("check this map failed: ", error)
           } else {
-            console.log("check has good this map success")
+            console.log("check this map success")
 
             let state = false
             if (result.length === 1) {
-              console.log("has already good this map")
+              console.log("has already this map")
               state = true
             }
+            connection.release()
             resolve(state)
           }
         })
@@ -216,22 +217,88 @@ class DataBaseHelper {
     })
   }
 
-  public goodMap(uid: number, mid: number) {
-    const sql = `INSERT INTO good (uid, mid) VALUES (${uid}, ${mid})`
+  public goodOrDiffMap(type: string, uid: number, mid: number) {
+    const sql = `INSERT INTO ${type} (uid, mid) VALUES (${uid}, ${mid})`
     return new Promise((resolve, rejects) => {
       this.pool.getConnection((err, connection) => {
         connection.query(sql, (error, result) => {
           if (error) {
-            console.log("good this map failed: ", error)
+            console.log("good or diff this map failed: ", error)
           } else {
-            console.log("good this map success")
+            console.log("good or diff this map success")
 
+            this.mapInfoIncreace(type, mid)
+            connection.release()
             resolve(true)
           }
         })
       })
     })
   }
+
+  public passMapInsert(uid: number, mid: number, time: number) {
+    const sql = `INSERT INTO pass (uid, mid, time) VALUES (${uid}, ${mid}, ${time})`
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("pass this map failed: ", error)
+          } else {
+            console.log("pass this map success")
+
+            this.mapInfoIncreace("pass", mid)
+            connection.release()
+            resolve(true)
+          }
+        })
+      })
+    })
+  }
+
+  public passMapUpdate(uid: number, mid: number, time: number) {
+    const sql = `UPDATE pass SET time=${time} WHERE uid=${uid} AND mid=${mid} AND time>=${time}`
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("update pass time failed")
+          } else {
+            console.log("update pass time success")
+
+            connection.release()
+            resolve(true)
+          }
+        })
+      })
+    })
+  }
+
+  public mapInfoIncreace(type: string, mid: number) {
+    let sql = ""
+    switch (type) {
+      case "good":
+        sql = `UPDATE map SET good_count=good_count+1 WHERE mid=${mid}`; break
+      case "diff":
+        sql = `UPDATE map SET diff_count=diff_count+1 WHERE mid=${mid}`; break
+      case "pass":
+        sql = `UPDATE map SET pass_count=pass_count+1 WHERE mid=${mid}`; break
+      case "trys":
+        sql = `UPDATE map SET trys_count=trys_count+1 WHERE mid=${mid}`; break
+    }
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("map info update increace failed")
+          } else {
+            connection.release()
+            resolve(true)
+          }
+        })
+      })
+    })
+  }
+
 }
 
 const dbHelper = new DataBaseHelper()
