@@ -30,3 +30,7 @@
 5. getRemoteMapsInfo - 获取用户已发布的地图的信息
     * 参数 - uid, username, password, nickname
     * 返回 - error (0 成功，1 服务端失败) maps (GetMyMapsInfo.maps)
+
+6. upgradeMapInfo - 更新地图点赞困难和通关数据，更新用户和地图关系数据表
+    * 参数 - type, uid, mid, time(可选)
+    * 返回 - error（0 成功，1 已经有了，2 服务端失败）
