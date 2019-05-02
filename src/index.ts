@@ -7,6 +7,7 @@ import signUp from "./signup"
 import querystring from 'querystring'
 import getMapById from "./getMapById"
 import getMyMapsInfo from "./getMyMapsInfo";
+import upgradeMapInfo from "./upgradeMapInfo";
 
 http.createServer((request, response) => {
 
@@ -55,6 +56,11 @@ http.createServer((request, response) => {
 
       const obj = JSON.parse(body)
       uploadMap(obj).then(e => { response.end(e) }).catch(console.log)
+
+    } else if (request.url === "/upgradeMapInfo") {
+
+      const obj = JSON.parse(body)
+      upgradeMapInfo(obj).then(e => { response.end(e) }).catch(console.log)
 
     } else {
 

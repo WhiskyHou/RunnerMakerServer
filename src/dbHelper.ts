@@ -1,5 +1,4 @@
 import * as mysql from 'mysql'
-import { rejects } from 'assert';
 
 class DataBaseHelper {
 
@@ -189,6 +188,45 @@ class DataBaseHelper {
 
             connection.release()
             resolve(maps)
+          }
+        })
+      })
+    })
+  }
+
+  public checkHasGood(uid: number, mid: number) {
+    const sql = `SELECT * FROM good WHERE uid=${uid} AND mid=${mid}`
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("check has good this map failed: ", error)
+          } else {
+            console.log("check has good this map success")
+
+            let state = false
+            if (result.length === 1) {
+              console.log("has already good this map")
+              state = true
+            }
+            resolve(state)
+          }
+        })
+      })
+    })
+  }
+
+  public goodMap(uid: number, mid: number) {
+    const sql = `INSERT INTO good (uid, mid) VALUES (${uid}, ${mid})`
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("good this map failed: ", error)
+          } else {
+            console.log("good this map success")
+
+            resolve(true)
           }
         })
       })
