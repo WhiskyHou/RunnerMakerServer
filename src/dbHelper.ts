@@ -111,7 +111,15 @@ class DataBaseHelper {
             resolve("fail")
           } else {
             result.forEach((item: any) => {
-              const map = { mid: item.mid, uid: item.uid, nickname: item.nickname }
+              const map = {
+                mid: item.mid,
+                uid: item.uid,
+                nickname: item.nickname,
+                goodCount: item.good_count,
+                diffcount: item.diff_count,
+                passCount: item.pass_count,
+                trysCount: item.trys_count
+              }
               maps.push(map)
             });
             connection.release()

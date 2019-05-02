@@ -25,7 +25,7 @@
 
 4. getMaps - 获取所有地图
     * 参数 - 
-    * 返回 - error (0 成功，1 服务端错误) maps ({ mid: number, uid: number, nickname: string }[])
+    * 返回 - error (0 成功，1 服务端错误) maps ({ mid, uid, nickname, goodCount, diffCount, passCount, trysCount }[])
 
 5. getRemoteMapsInfo - 获取用户已发布的地图的信息
     * 参数 - uid, username, password, nickname
