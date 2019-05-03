@@ -8,6 +8,7 @@ import querystring from 'querystring'
 import getMapById from "./getMapById"
 import getMyMapsInfo from "./getMyMapsInfo";
 import upgradeMapInfo from "./upgradeMapInfo";
+import { getGoodRank, getCreateRank } from "./rank";
 
 http.createServer((request, response) => {
 
@@ -61,6 +62,16 @@ http.createServer((request, response) => {
 
       const obj = JSON.parse(body)
       upgradeMapInfo(obj).then(e => { response.end(e) }).catch(console.log)
+
+    } else if (request.url === "/getGoodRank") {
+
+      const obj = JSON.parse(body)
+      getGoodRank(obj).then(e => { response.end(e) }).catch(console.log)
+
+    } else if (request.url === "/getCreateRank") {
+
+      const obj = JSON.parse(body)
+      getCreateRank(obj).then(e => { response.end(e) }).catch(console.log)
 
     } else {
 

@@ -1,4 +1,6 @@
 import * as mysql from 'mysql'
+import { resolve } from 'url';
+import { rejects } from 'assert';
 
 class DataBaseHelper {
 
@@ -299,6 +301,39 @@ class DataBaseHelper {
     })
   }
 
+  public getAllUser() {
+    const sql = `SELECT * FROM user`
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("select all user failed: ", error)
+          } else {
+            console.log("select all user success")
+
+            resolve(result)
+          }
+        })
+      })
+    })
+  }
+
+  public getAllMap() {
+    const sql = `SELECT * FROM map`
+    return new Promise((resolve, rejects) => {
+      this.pool.getConnection((err, connection) => {
+        connection.query(sql, (error, result) => {
+          if (error) {
+            console.log("select all map failed: ", error)
+          } else {
+            console.log("select all map success")
+
+            resolve(result)
+          }
+        })
+      })
+    })
+  }
 }
 
 const dbHelper = new DataBaseHelper()
