@@ -21,6 +21,7 @@ export default function upgradeMapInfo(info: any) {
         } else {
           dbHelper.passMapInsert(info.uid, info.mid, info.time)
         }
+        dbHelper.mapInfoIncreace("pass", info.mid)
         result.error = 0
         resolve(JSON.stringify(result))
       })

@@ -246,7 +246,7 @@ class DataBaseHelper {
           } else {
             console.log("pass this map success")
 
-            this.mapInfoIncreace("pass", mid)
+            // this.mapInfoIncreace("pass", mid)
             connection.release()
             resolve(true)
           }
