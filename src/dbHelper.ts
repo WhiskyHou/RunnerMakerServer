@@ -311,6 +311,7 @@ class DataBaseHelper {
           } else {
             console.log("select all user success")
 
+            connection.release()
             resolve(result)
           }
         })
@@ -328,6 +329,7 @@ class DataBaseHelper {
           } else {
             console.log("select all map success")
 
+            connection.release()
             resolve(result)
           }
         })
