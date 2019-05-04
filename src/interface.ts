@@ -45,3 +45,28 @@ interface MapData {
   endPos: { x: number, y: number }
   nodeInfo: { pos: { x: number, y: number }, prefabType: string }[]
 }
+
+
+interface GoodRankResult {
+  error: number
+  me: GoodRankInfo
+  list: GoodRankInfo[]
+}
+interface GoodRankInfo {
+  uid: number
+  rank: number
+  nickname: number
+  goodCount: number
+}
+
+interface CreateRankResult {
+  error: number
+  me: CreateRankInfo
+  list: CreateRankInfo[]
+}
+interface CreateRankInfo {
+  uid: number
+  rank: number
+  nickname: string
+  createCount: number
+}

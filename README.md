@@ -34,3 +34,11 @@
 6. upgradeMapInfo - 更新地图点赞困难和通关数据，更新用户和地图关系数据表
     * 参数 - type, uid, mid, time(可选)
     * 返回 - error（0 成功，1 已经有了，2 服务端失败）
+
+7. getGoodRank - 获取点赞排行榜数据
+    * 参数 - user
+    * 返回 - error（0 成功，1 服务器失败）me (GoodRankInfo) list (GoodRankList[])
+
+8. getCreateRank - 获取创作量排行榜数据
+    * 参数 - user
+    * 返回 - error（0 成功，1 服务器失败）me (CreateRankInfo) list (CreateRankList[])
