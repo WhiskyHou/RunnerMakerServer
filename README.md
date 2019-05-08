@@ -27,18 +27,22 @@
     * 参数 - 
     * 返回 - error (0 成功，1 服务端错误) maps ({ mid, uid, nickname, goodCount, diffCount, passCount, trysCount }[])
 
-5. getRemoteMapsInfo - 获取用户已发布的地图的信息
+5. getMapById - 根据 ID 获取地图的全部信息
+    * 参数 - mid
+    * 返回 - map
+
+6. getRemoteMapsInfo - 获取用户已发布的地图的信息
     * 参数 - uid, username, password, nickname
     * 返回 - error (0 成功，1 服务端失败) maps (GetMyMapsInfo.maps)
 
-6. upgradeMapInfo - 更新地图点赞困难和通关数据，更新用户和地图关系数据表
+7. upgradeMapInfo - 更新地图点赞困难和通关数据，更新用户和地图关系数据表
     * 参数 - type, uid, mid, time(可选)
     * 返回 - error（0 成功，1 已经有了，2 服务端失败）
 
-7. getGoodRank - 获取点赞排行榜数据
+8. getGoodRank - 获取点赞排行榜数据
     * 参数 - user
     * 返回 - error（0 成功，1 服务器失败）me (GoodRankInfo) list (GoodRankList[])
 
-8. getCreateRank - 获取创作量排行榜数据
+9. getCreateRank - 获取创作量排行榜数据
     * 参数 - user
     * 返回 - error（0 成功，1 服务器失败）me (CreateRankInfo) list (CreateRankList[])
