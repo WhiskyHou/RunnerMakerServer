@@ -117,7 +117,7 @@ class DataBaseHelper {
                 uid: item.uid,
                 nickname: item.nickname,
                 goodCount: item.good_count,
-                diffcount: item.diff_count,
+                diffCount: item.diff_count,
                 passCount: item.pass_count,
                 trysCount: item.trys_count
               }
