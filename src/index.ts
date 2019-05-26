@@ -20,6 +20,9 @@ http.createServer((request, response) => {
   request.on("data", (chunk: any) => {
     body += chunk;
 
+  });
+
+  request.on("end", () => {
     // python post json
     // let res = querystring.parse(body)
     // console.log(JSON.parse(res.data.toString()))
@@ -78,8 +81,7 @@ http.createServer((request, response) => {
       response.end("api name error");
 
     }
-  });
-
+  })
 }).listen(8686);
 
 console.log("start a servert http://localhost:8686");
